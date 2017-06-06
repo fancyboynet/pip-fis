@@ -21,7 +21,7 @@
 
 # 扩展jinja2
 
-    [参考fis3官方推荐语法](https://github.com/fex-team/fis3-solutions/blob/master/spec.md#语法糖扩展)
+[参考fis3官方推荐语法](https://github.com/fex-team/fis3-solutions/blob/master/spec.md#语法糖扩展)
 
     {% fis_framework 'static/lib/mod.js' %}
     
