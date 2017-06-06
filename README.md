@@ -1,6 +1,23 @@
 # 安装
 
     pip install fis3
+    
+# 替换原来的render_template渲染
+
+    app = Flask(__name__)
+    FIS(app, static_folder="static", template_folder="templates")
+    
+    @app.route('/')
+    def index():
+        return FIS.render_template('page/index/index.html', title='index')
+        
+# 使用蓝图时要带上命名空间
+
+    www = Blueprint('www', __name__)
+    
+    @www.route('/')
+    def index():
+        return FIS.render_template('www:page/index/index.html', title='index')
 
 # 扩展jinja2
 
@@ -56,22 +73,7 @@
     </body>
     </html>
     
-# 替换原来的render_template渲染
 
-    app = Flask(__name__)
-    FIS(app, static_folder="static", template_folder="templates")
-    
-    @app.route('/')
-    def index():
-        return FIS.render_template('page/index/index.html', title='index')
-        
-# 使用蓝图时要带上命名空间
-
-    www = Blueprint('www', __name__)
-    
-    @www.route('/')
-    def index():
-        return FIS.render_template('www:page/index/index.html', title='index')
         
 # 发布到pypi
 
