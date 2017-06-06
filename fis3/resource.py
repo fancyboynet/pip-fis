@@ -166,6 +166,8 @@ class Resource:
 
     @classmethod
     def __output_framework(cls, html):
+        if cls.__framework_res_id is None:
+            return html
         return str(html).replace(cls.__FRAMEWORK_HOOK, cls.__get_script_html(cls.__framework_res_id))\
 
 
