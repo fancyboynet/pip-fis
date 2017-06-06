@@ -1,3 +1,7 @@
+# 安装
+
+    pip install fis3
+
 # 扩展jinja2
 
     [参考fis3官方推荐语法](https://github.com/fex-team/fis3-solutions/blob/master/spec.md#语法糖扩展)
