@@ -75,7 +75,7 @@ class Resource:
     def __parse_res_id(cls, res_id):
         result = res_id.split(':', 1)
         namespace = None
-        if result[1]:
+        if len(result) == 2:
             namespace = result[0]
         return [namespace, result[-1]]
 
