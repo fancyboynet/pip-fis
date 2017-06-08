@@ -41,7 +41,7 @@ class Resource:
 
     @classmethod
     def __set_res_map(cls, namespace):
-        path = os.path.join(os.path.abspath(cls.__static_folder), namespace, 'map.json')
+        path = os.path.join(os.path.abspath(cls.__static_folder), namespace if namespace else '', 'map.json')
         if not os.path.isfile(path):
             raise 'MAP文件不存在'
         try:
