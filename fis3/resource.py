@@ -8,10 +8,10 @@ import time
 import htmlmin
 
 class Resource:
-    __STYLE_HOOK = '<!--[FIS_STYLE_HOOK]-->'
-    __SCRIPT_HOOK = '<!--[FIS_SCRIPT_HOOK]-->'
-    __FRAMEWORK_HOOK = '<!--[FIS_FRAMEWORK_HOOK]-->'
-    __RESOURCE_MAP_HOOK = '<!--[FIS_RESOURCE_MAP_HOOK]-->'
+    __STYLE_HOOK = u'<!--[FIS_STYLE_HOOK]-->'
+    __SCRIPT_HOOK = u'<!--[FIS_SCRIPT_HOOK]-->'
+    __FRAMEWORK_HOOK = u'<!--[FIS_FRAMEWORK_HOOK]-->'
+    __RESOURCE_MAP_HOOK = u'<!--[FIS_RESOURCE_MAP_HOOK]-->'
     __framework_res_id = None
     __res_map = {}
     __style_list = []
@@ -150,8 +150,8 @@ class Resource:
             _list.append(cls.__get_link_html(res_id))
         for style in cls.__inline_style_list:
             _list.append(style)
-        _list = '\n'.join(_list)
-        return str(html).replace(cls.__STYLE_HOOK, _list)
+        _list = u'\n'.join(_list)
+        return unicode(html).replace(cls.__STYLE_HOOK, _list)
 
     @classmethod
     def __output_script(cls, html):
@@ -161,25 +161,24 @@ class Resource:
 
         for script in cls.__inline_script_list:
             _list.append(script)
-        _list = '\n'.join(_list)
-        return str(html).replace(cls.__SCRIPT_HOOK, _list)
+        _list = u'\n'.join(_list)
+        return unicode(html).replace(cls.__SCRIPT_HOOK, _list)
 
     @classmethod
     def __output_framework(cls, html):
         if cls.__framework_res_id is None:
             return html
-        return str(html).replace(cls.__FRAMEWORK_HOOK, cls.__get_script_html(cls.__framework_res_id))\
-
+        return unicode(html).replace(cls.__FRAMEWORK_HOOK, cls.__get_script_html(cls.__framework_res_id))
 
     @classmethod
     def __output_resource_map(cls, html):
-        return str(html).replace(cls.__RESOURCE_MAP_HOOK, cls.__get_resource_map_html())
+        return unicode(html).replace(cls.__RESOURCE_MAP_HOOK, cls.__get_resource_map_html())
 
     @classmethod
     def __get_resource_map_html(cls):
         if not cls.__get_resource_map():
-            return ''
-        return '<script type="text/javascript">require.resourceMap(' + json.dumps(cls.__get_resource_map()) + ')</script>'
+            return u''
+        return u'<script type="text/javascript">require.resourceMap(' + json.dumps(cls.__get_resource_map()) + u')</script>'
 
     @classmethod
     def placeholder(cls, hook_type):
@@ -205,7 +204,7 @@ class Resource:
     @classmethod
     def __get_link_html_by_source(cls, source):
         if source:
-            return '<link rel="stylesheet" type="text/css" href="' + source + '"/>'
+            return u'<link rel="stylesheet" type="text/css" href="' + source + u'"/>'
         return
 
     @classmethod
@@ -215,7 +214,7 @@ class Resource:
     @classmethod
     def __get_script_html_by_source(cls, source):
         if source:
-            return '<script type="text/javascript" src="' + source + '"></script>'
+            return u'<script type="text/javascript" src="' + source + u'"></script>'
         return
 
     @classmethod
@@ -352,9 +351,4 @@ class Resource:
         if res and res.get('type') == 'css':
             return True
         return False
-
-
-
-
-
 
