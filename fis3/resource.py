@@ -23,7 +23,6 @@ class Resource:
     __context = {}
     __static_folder = ''
     __template_folder = ''
-    __namespace = ''
     __debug = False
     __cache_time = 60 * 60
     __now = None
@@ -83,8 +82,7 @@ class Resource:
     def render_template(cls, res_id, **context):
         cls.__reset(**context)
         output_html = cls.__render_flask_template(cls.__get_template_real_name(res_id))
-        cls.__load_deps(res_id)
-        cls.__load_async(res_id)
+        cls.__load(res_id)
         output_html = cls.__output_style(output_html)
         output_html = cls.__output_framework(output_html)
         output_html = cls.__output_resource_map(output_html)
@@ -129,9 +127,17 @@ class Resource:
             return
         # fis3-postpackager-loader
         if res.get('aioPkg'):
+            if not cls._is_page_res(res_id):  # 非"页面级打包资源"不加载
+                return
             cls.__load(res.get('aioPkg'))
             return
         cls.__add_res(res_id)
+
+    @classmethod
+    def _is_page_res(cls, res_id):
+        namespace = cls.__get_namespace_from_res_id(res_id)
+        start = 'page' if not namespace else namespace + ":" + 'page'
+        return res_id.startswith(start)
 
     @classmethod
     def __add_css(cls, res_id):
@@ -351,4 +357,3 @@ class Resource:
         if res and res.get('type') == 'css':
             return True
         return False
-
