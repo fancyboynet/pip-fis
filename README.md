@@ -75,7 +75,14 @@
     
 
         
-# 发布到pypi
-[教程](https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi)
+# 发布
+
+[pypi](https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi)
+
     python setup.py sdist
     twine upload -r pypi dist/*
+    
+newgame
+
+    python setup_newgame.py sdist
+    python setup_newgame.py sdist upload - r newgame
