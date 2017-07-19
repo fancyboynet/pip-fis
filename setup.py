@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="fis3",
-    version="0.0.7",
+    version="0.0.8",
     keywords=("pip", "fis", "fis3"),
     description="扩展flask,支持fis3",
     license="MIT Licence",
@@ -16,5 +16,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=["Flask>=0.12", "htmlmin>=0.1.10"]
+    install_requires=["Flask>=0.10.1", "htmlmin>=0.1.10"]
 )
