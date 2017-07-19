@@ -76,7 +76,6 @@
 
         
 # 发布到pypi
-
+[教程](https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi)
     python setup.py sdist
-    python setup.py register -r pypi  #只要注册一次
-    python setup.py sdist upload -r pypi
+    twine upload -r pypi dist/*
